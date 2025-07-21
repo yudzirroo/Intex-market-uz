@@ -1,0 +1,32 @@
+{
+  "Header": {
+    "a1": "Ramkali basseynlar",
+    "a2": "Shishiriladigan basseynlar",
+    "call": "Qo‘ng‘iroq qilish",
+    "tg": "Telegram",
+    "insta": "Instagram"
+  },
+  "Season": {
+    "title": "Mavsumiy chegirmalar!",
+    "card1title": "Hovuz bepul yetkazib beriladi",
+    "card1text": "Biz mijozlarimizni qadrlaymiz, xizmatimiz sifatiga ishonchingiz komil bo‘lsin!",
+    "card2title": "Maxsus kimyo sovg‘a tariqasida",
+    "card2text": "Hovuz uchun maxsus tozalovchi kimyo — bepul",
+    "card3title": "Sifat kafolati",
+    "card3text": "Barcha INTEX mahsulotlari originaldir"
+  },
+  "Frame": {
+    "title": "Ramkali basseynlar",
+    "order": "Buyurtma qilish",
+    "recommended": "Tavsiya qilamiz",
+    "discount": "Chegirma",
+    "none": "Sotuvda yo’q",
+    "price": "so'm"
+  },
+  "Order": {
+    "name": "Ismingiz",
+    "phone": "Raqamingiz",
+    "adres": "Manzilingiz",
+    "order": "Buyurtma berish"
+  }
+}
