@@ -6,7 +6,7 @@ import React from "react";
 const SeasonalSale = () => {
   const t = useTranslations("Season");
   return (
-    <div className="text-white">
+    <div className="text-white bg-[var(--clr-bg)]">
       <Title title={t("title")} />
       <div className="containers hidden !py-[100px] md:flex items-center flex-wrap gap-y-[30px] !px-[30px] justify-between">
         <SeasonCard index={1} title={t("card1title")} text={t("card1text")} />

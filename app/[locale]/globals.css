@@ -1,22 +1,27 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'TrebuchetMS';
-  src: url('/assets/fonts/trebuchetms.ttf') format('truetype');
+  font-family: "TrebuchetMS";
+  src: url("/assets/fonts/trebuchetms.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+}
+
+:root {
+  --clr-green: #009398;
+  --clr-bg: #f8f8f8;
+}
+
+.dark{
+  --clr-green: #006d71;
+  --clr-bg: black;
 }
 
 body {
   font-family: var(--font-trebuchet), sans-serif;
 }
 
-
-:root{
-  --clr-green: #009398
-}
-
-.containers{
+.containers {
   max-width: 1110px;
   margin: auto;
 }

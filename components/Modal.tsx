@@ -1,15 +1,17 @@
 "use client";
 import { CloseOutlined } from "@/assets/icons/icon";
-import React, { Dispatch, ReactNode, SetStateAction } from "react";
+import React, { Dispatch, FormEvent, ReactNode, SetStateAction } from "react";
 
 const Modal = ({
   children,
+  onSubmit,
   isOpen,
   setIsOpen,
 }: {
   children: ReactNode;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
 }) => {
   if (!isOpen) return null;
   return (
@@ -19,15 +21,15 @@ const Modal = ({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white p-8 rounded-lg shadow-lg max-w-[90vw] max-h-[90vh] overflow-auto text-black"
+        className="relative bg-white p-8 rounded-[35px] shadow-lg max-w-[90vw] max-h-[90vh] overflow-auto text-black"
       >
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 text-[20px] text-gray-500 hover:text-black transition cursor-pointer"
+          className="absolute top-[22px] right-[30px] text-[20px] text-gray-500 hover:text-black transition cursor-pointer"
         >
           <CloseOutlined />
         </button>
-        {children}
+        <form onSubmit={onSubmit}>{children}</form>
       </div>
     </div>
   );

@@ -27,6 +27,9 @@
     "name": "Ismingiz",
     "phone": "Raqamingiz",
     "adres": "Manzilingiz",
-    "order": "Buyurtma berish"
+    "order": "Buyurtma berish",
+    "loading": "Yuklash...",
+    "thanks": "Raxmat!",
+    "checked": "Buyurtmangiz muvaffaqiyatli ro’yxatdan o’tdi. Yaqin vaqt oralig’ida siz bilan bog’lanamiz."
   }
 }
