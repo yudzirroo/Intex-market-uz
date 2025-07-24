@@ -115,7 +115,7 @@ const PoolCard = ({ item, id }: { item: ProductType; id?: number }) => {
           </Heading>
         )}
       </div>
-      <OrderModal id={poolId} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <OrderModal resolvedTheme={resolvedTheme} id={poolId} isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };

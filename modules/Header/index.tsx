@@ -3,7 +3,7 @@ import Heading from "@/components/Heading";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LangConfig from "./LangConfig";
 import { MenuIcon, MoonIcon, SunIcon } from "@/assets/icons/icon";
 import NavbarModal from "../NavbarModal";
@@ -17,8 +17,29 @@ const Header = () => {
   const [data, setData] = useState<InfoType | null>(null);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScrollY = useRef(0);
+
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -26,61 +47,70 @@ const Header = () => {
   }, []);
   if (!mounted) return null;
   return (
-    <div className="py-5 px-[24px] md:px-[67px] text-white bg-[var(--clr-green)] flex items-center justify-between">
-      <h1
-        style={{ fontFamily: "var(--font-signika)" }}
-        className="font-semibold text-[20px] lg:text-[25px]"
-      >
-        INTEX-MARKET.UZ
-      </h1>
-      <div className="hidden lg:flex gap-[30px]">
-        <a href="#frame">
-          <Heading tag="h2">{t("a1")}</Heading>
-        </a>
-        <a href="#">
-          <Heading tag="h2">{t("a2")}</Heading>
-        </a>
-      </div>
-      <div className="flex items-center">
-        <Heading classList="!text-[20px] mr-[10px] hidden lg:flex" tag="h2">
-          {data?.phone}
-        </Heading>
-        <Link target="_blank" href={`${data?.telegram_link}`}>
-          <Image
-            className="w-[40px] h-[40px]"
-            src={"/telegram.svg"}
-            alt="telegram img"
-            width={40}
-            height={40}
-            priority
-          />
-        </Link>
-        <Link target="_blank" href={`${data?.instagram_link}`}>
-          <Image
-            className="w-[40px] h-[40px]"
-            src={"/instagram.svg"}
-            alt="instagram img"
-            width={40}
-            height={40}
-            priority
-          />
-        </Link>
-        <LangConfig />
-        <button
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="self-start mt-[5px] p-[3px] ml-2 cursor-pointer bg-white text-[var(--clr-green)] rounded-[3px] shadow-lg"
+    <>
+      <div className="pb-[80px]">
+        <div
+          className={`py-5 px-[24px] md:px-[67px] text-white bg-[var(--clr-green)] flex items-center justify-between fixed w-full z-50 transition-transform duration-300 ease-in-out ${
+            showHeader ? "translate-y-0" : "-translate-y-full"
+          }`}
         >
-          {theme === "dark" ? <MoonIcon /> : <SunIcon />}
-        </button>
-        <button
-          onClick={() => setIsOpen(true)}
-          className="self-start mt-[7px] ml-2 cursor-pointer lg:hidden"
-        >
-          <MenuIcon />
-        </button>
+          <Link
+            href={"/"}
+            style={{ fontFamily: "var(--font-signika)" }}
+            className="font-semibold text-[20px] lg:text-[25px] cursor-pointer"
+          >
+            INTEX-MARKET.UZ
+          </Link>
+          <div className="hidden lg:flex gap-[30px]">
+            <a href="#frame">
+              <Heading tag="h2">{t("a1")}</Heading>
+            </a>
+            <a href="#">
+              <Heading tag="h2">{t("a2")}</Heading>
+            </a>
+          </div>
+          <div className="flex items-center">
+            <Heading classList="!text-[20px] mr-[10px] hidden lg:flex" tag="h2">
+              {data?.phone}
+            </Heading>
+            <Link target="_blank" href={`${data?.telegram_link}`}>
+              <Image
+                className="w-[40px] h-[40px]"
+                src={"/telegram.svg"}
+                alt="telegram img"
+                width={40}
+                height={40}
+                priority
+              />
+            </Link>
+            <Link target="_blank" href={`${data?.instagram_link}`}>
+              <Image
+                className="w-[40px] h-[40px]"
+                src={"/instagram.svg"}
+                alt="instagram img"
+                width={40}
+                height={40}
+                priority
+              />
+            </Link>
+            <LangConfig />
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="self-start mt-[5px] p-[3px] ml-2 cursor-pointer bg-white text-[var(--clr-green)] rounded-[3px] shadow-lg"
+            >
+              {theme === "dark" ? <MoonIcon /> : <SunIcon />}
+            </button>
+            <button
+              onClick={() => setIsOpen(true)}
+              className="self-start mt-[7px] ml-2 cursor-pointer lg:hidden"
+            >
+              <MenuIcon />
+            </button>
+          </div>
+        </div>
       </div>
       <NavbarModal data={data} isOpen={isOpen} setIsOpen={setIsOpen} />
-    </div>
+    </>
   );
 };
 

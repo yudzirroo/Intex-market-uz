@@ -10,10 +10,12 @@ import CheckModal from "./CheckModal";
 import { API } from "@/service/hooks/getEnv";
 
 const OrderModal = ({
+  resolvedTheme,
   isOpen,
   setIsOpen,
   id,
 }: {
+  resolvedTheme?: string;
   isOpen: boolean;
   setIsOpen: any;
   id: number | null;
@@ -71,7 +73,9 @@ const OrderModal = ({
               required
               type={"text"}
               name="name"
-              className="text-center !py-[14px] w-full !rounded-[17px] font-bold !text-[20px]"
+              className={`text-center !py-[14px] w-full !rounded-[17px] font-bold !text-[20px] ${
+                resolvedTheme == "dark" && "text-white"
+              }`}
               style={{ boxShadow: "0 0 10px #CBCBCB" }}
               placeholder={t("name")}
             />
@@ -80,7 +84,9 @@ const OrderModal = ({
               required
               name="phone"
               type={"tel"}
-              className="text-center !py-[14px] w-full !rounded-[17px] font-bold !text-[20px]"
+              className={`text-center !py-[14px] w-full !rounded-[17px] font-bold !text-[20px] ${
+                resolvedTheme == "dark" && "text-white"
+              }`}
               style={{ boxShadow: "0 0 10px #CBCBCB" }}
               placeholder={t("phone")}
             />
@@ -91,7 +97,9 @@ const OrderModal = ({
                 required
                 name="adres"
                 type={"text"}
-                className="text-center !py-[14px] w-full !rounded-[17px] font-bold !text-[20px]"
+                className={`text-center !py-[14px] w-full !rounded-[17px] font-bold !text-[20px] ${
+                  resolvedTheme == "dark" && "text-white"
+                }`}
                 style={{ boxShadow: "0 0 10px #CBCBCB" }}
                 placeholder={t("adres")}
               />
@@ -115,7 +123,7 @@ const OrderModal = ({
           </div>
         </div>
       </Modal>
-      <CheckModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
+      <CheckModal resolvedTheme={resolvedTheme} isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
     </>
   );
 };

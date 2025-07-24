@@ -5,13 +5,14 @@ import { useTranslations } from "next-intl";
 import Heading from "./Heading";
 
 const CheckModal: FC<{
+  resolvedTheme?: string;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-}> = ({ isOpen, setIsOpen }) => {
+}> = ({ isOpen, setIsOpen, resolvedTheme }) => {
   const t = useTranslations("Order");
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <div className="text-center space-y-[40px] pt-[49px] pb-[100px] flex flex-col items-center">
+      <div className={`text-center space-y-[40px] pt-[49px] pb-[100px] flex flex-col items-center ${resolvedTheme == 'dark' && "text-white"}`}>
         <CheckIcon />
         <Heading tag="h1" classList="!text-[61px]">
           {t("thanks")}

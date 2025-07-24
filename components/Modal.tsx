@@ -21,7 +21,7 @@ const Modal = ({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white p-8 rounded-[35px] shadow-lg max-w-[90vw] max-h-[90vh] overflow-auto text-black"
+        className="relative bg-[var(--clr-bg)]  p-8 rounded-[35px] shadow-lg max-w-[90vw] max-h-[90vh] overflow-auto text-black"
       >
         <button
           onClick={() => setIsOpen(false)}
