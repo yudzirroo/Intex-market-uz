@@ -10,6 +10,8 @@ import NavbarModal from "../NavbarModal";
 import getRequest from "@/service/getRequest";
 import { InfoType } from "@/types/InfoType";
 import { useTheme } from "next-themes";
+import { CategoryType } from "@/types/CategoryType";
+import { getCookie } from "cookies-next";
 
 const Header = () => {
   const t = useTranslations("Header");
@@ -17,8 +19,10 @@ const Header = () => {
   const [data, setData] = useState<InfoType | null>(null);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const b = getCookie("NEXT_LOCALE");
   const [showHeader, setShowHeader] = useState(true);
   const lastScrollY = useRef(0);
+  const [category, setCategory] = useState<CategoryType[] | []>([]);
 
   useEffect(() => {
     setMounted(true);
@@ -43,6 +47,10 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    getRequest(`/category`).then(setCategory);
+  }, []);
+
+  useEffect(() => {
     getRequest(`/info/1`).then(setData);
   }, []);
   if (!mounted) return null;
@@ -62,12 +70,11 @@ const Header = () => {
             INTEX-MARKET.UZ
           </Link>
           <div className="hidden lg:flex gap-[30px]">
-            <a href="#frame">
-              <Heading tag="h2">{t("a1")}</Heading>
-            </a>
-            <a href="#">
-              <Heading tag="h2">{t("a2")}</Heading>
-            </a>
+            {(category as any)?.map((item: CategoryType) => (        
+              <a href={`#${item.id}`} key={item.id}>
+                <Heading tag="h2">{b == "uz" ? item.nameUz : item.name}</Heading>
+              </a>
+            ))}
           </div>
           <div className="flex items-center">
             <Heading classList="!text-[20px] mr-[10px] hidden lg:flex" tag="h2">

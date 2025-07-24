@@ -21,7 +21,7 @@ const PoolCard = ({ item, id }: { item: ProductType; id?: number }) => {
   }, []);
 
   if (!mounted) return null;
-
+  if(!item) return ""
   return (
     <div
       style={{
@@ -29,7 +29,7 @@ const PoolCard = ({ item, id }: { item: ProductType; id?: number }) => {
           "0px 2px 10px rgba(0,0,0,0.1), 0px 6px 20px rgba(0,0,0,0.15)",
       }}
       className={`${
-        id ? "w-[340px] h-[284px]" : "w-[633px] h-[505px] py-[50px] px-[60px]"
+        id ? "w-[340px] h-[284px]" : "w-[400px] h-[400px] py-[50px] px-[60px]"
       } rounded-b-[35px] rounded-tr-[35px] ${
         resolvedTheme == "dark" ? "bg-gray-700" : "bg-white"
       }`}
@@ -106,16 +106,21 @@ const PoolCard = ({ item, id }: { item: ProductType; id?: number }) => {
         ) : (
           <Heading
             tag="h2"
-            classList={`!text-white ${
-              id ? "!text-[16px]" : "!text-[30px] text-center"
-            }`}
+            classList={`
+              ${resolvedTheme == "dark" ? "!text-white" : "!text-black"}
+              ${id ? "!text-[16px]" : "!text-[30px] text-center"}`}
           >
             {new Intl.NumberFormat("de-DE").format(item.discountPrice)}
             {t("price")}
           </Heading>
         )}
       </div>
-      <OrderModal resolvedTheme={resolvedTheme} id={poolId} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <OrderModal
+        resolvedTheme={resolvedTheme}
+        id={poolId}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
     </div>
   );
 };

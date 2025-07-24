@@ -8,6 +8,7 @@ import getRequest from "@/service/getRequest";
 import { ProductType } from "@/types/ProductType";
 import CheckModal from "./CheckModal";
 import { API } from "@/service/hooks/getEnv";
+import Heading from "./Heading";
 
 const OrderModal = ({
   resolvedTheme,
@@ -39,34 +40,103 @@ const OrderModal = ({
     const formData = new FormData(form);
     setIsLoading(true);
 
-    fetch(`${API}/order`, {
-      method: "post",
-      body: JSON.stringify({
-        userName: formData.get("name"),
-        userPhone: formData.get("phone"),
-        userAddress: formData.get("adres"),
-        productId: id,
-      }),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setIsOpenModal(true);
-        setIsLoading(false);
-        setIsOpen(false);
+    console.log("userName: ", formData.get("name"));
+    console.log("userPhone: ", formData.get("phone"));
+    console.log("userAddress: ", formData.get("adres"));
+    console.log("productId: ", id ? +id : "");
+
+    if (id) {
+      fetch(`${API}/order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: formData.get("name"),
+          userPhone: formData.get("phone"),
+          userAddress: formData.get("adres"),
+          productId: +id,
+        }),
       })
-      .catch((err) => {
-        console.error("Ошибка:", err);
-        setIsLoading(false);
-        setIsOpenModal(true);
-        setIsOpen(false);
-      });
+        .then(async (res) => {
+          if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.message || "Ошибка при создании заказа");
+          }
+          return res.json();
+        })
+        .then((res) => {
+          console.log("Успешный заказ:", res);
+          setIsOpenModal(true);
+          setIsLoading(false);
+          setIsOpen(false);
+        })
+        .catch((err) => {
+          console.error("Ошибка:", err.message);
+          setIsLoading(false);
+          setIsOpenModal(true);
+          setIsOpen(false);
+        });
+    }
   }
 
   return (
     <>
       <Modal onSubmit={handleSubmit} setIsOpen={setIsOpen} isOpen={isOpen}>
         <div className="flex flex-col lg:flex-row pt-6 lg:pt-0 items-center gap-[47px]">
-          <PoolCard item={data as ProductType} />
+          <div
+            style={{
+              boxShadow:
+                "0px 2px 10px rgba(0,0,0,0.1), 0px 6px 20px rgba(0,0,0,0.15)",
+            }}
+            className={`
+            ${resolvedTheme == "dark" ? "bg-gray-700" : "bg-white"}
+            rounded-b-[35px]  rounded-tr-[35px] flex items-center !w-[900px] flex-col lg:flex-row`}
+          >
+            <PoolCard item={data as ProductType} />
+            <div className="space-y-5 p-5">
+              <Heading
+                classList={`
+            ${resolvedTheme == "dark" && "text-white"}
+                
+                `}
+                tag="h2"
+              >
+                {t("size")}: <span className="!font-normal">{data.size} м</span>
+              </Heading>
+              <Heading
+                classList={`
+            ${resolvedTheme == "dark" && "text-white"}
+                
+                `}
+                tag="h2"
+              >
+                {t("depth")}:{" "}
+                <span className="!font-normal">{data.depth} см</span>
+              </Heading>
+              <Heading
+                classList={`
+            ${resolvedTheme == "dark" && "text-white"}
+                
+                `}
+                tag="h2"
+              >
+                {t("status")}:{" "}
+                <span className="!font-normal">{data.status}</span>
+              </Heading>
+              <Heading
+                classList={`
+            ${resolvedTheme == "dark" && "text-white"}
+                
+                `}
+                tag="h2"
+              >
+                {t("category")}:{" "}
+                <span className="!font-normal">{data.Category.name}</span>
+              </Heading>
+            </div>
+          </div>
+
           <div className="flex flex-col gap-[18px] w-[100%] lg:w-[50%]">
             <input
               disabled={isLoading}
@@ -123,7 +193,11 @@ const OrderModal = ({
           </div>
         </div>
       </Modal>
-      <CheckModal resolvedTheme={resolvedTheme} isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
+      <CheckModal
+        resolvedTheme={resolvedTheme}
+        isOpen={isOpenModal}
+        setIsOpen={setIsOpenModal}
+      />
     </>
   );
 };

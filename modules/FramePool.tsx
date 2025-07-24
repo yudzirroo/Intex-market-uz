@@ -9,7 +9,7 @@ const FramePool = async () => {
   const data = await getRequest("/product?categoryId=1");
 
   return (
-    <div className="text-white bg-[var(--clr-bg)]" id="frame">
+    <div className="text-white bg-[var(--clr-bg)]" id="1">
       <Title title={t("title")} />
       <div className="containers !py-[100px] px-[30px] lg:!px-0 flex gap-y-[40px] gap-x-[10px] justify-center md:justify-between flex-wrap">
         {data.map((item: ProductType) => (

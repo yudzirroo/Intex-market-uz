@@ -30,6 +30,18 @@
     "order": "Buyurtma berish",
     "loading": "Yuklash...",
     "thanks": "Raxmat!",
-    "checked": "Buyurtmangiz muvaffaqiyatli ro’yxatdan o’tdi. Yaqin vaqt oralig’ida siz bilan bog’lanamiz."
-  }
+    "checked": "Buyurtmangiz muvaffaqiyatli ro’yxatdan o’tdi. Yaqin vaqt oralig’ida siz bilan bog’lanamiz.",
+    "size": "Hajmi",
+    "depth": "Chuqurligi",
+    "status": "Holati",
+    "category": "Kategoriya"
+  },
+      "Inflatable": {
+        "title": "Shishiriladigan basseynlar",
+        "order": "Buyurtma qilish",
+        "recommended": "Tavsiya qilamiz",
+        "discount": "Chegirma",
+        "none": "Sotuvda yo’q",
+        "price": "so'm"
+    }
 }
