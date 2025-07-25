@@ -36,12 +36,45 @@
     "status": "Holati",
     "category": "Kategoriya"
   },
-      "Inflatable": {
-        "title": "Shishiriladigan basseynlar",
-        "order": "Buyurtma qilish",
-        "recommended": "Tavsiya qilamiz",
-        "discount": "Chegirma",
-        "none": "Sotuvda yo’q",
-        "price": "so'm"
-    }
+  "Inflatable": {
+    "title": "Shishiriladigan basseynlar",
+    "order": "Buyurtma qilish",
+    "recommended": "Tavsiya qilamiz",
+    "discount": "Chegirma",
+    "none": "Sotuvda yo’q",
+    "price": "so'm"
+  },
+  "Delivery": {
+    "title": "Tekin yetkazib berish",
+    "text": "Toshkent shahri ichida yetkazib berish bepul (shahar tashqarisida yetkazib berish alohida to'lanadi)",
+    "btn": "Buyurtma berish"
+  },
+  "Customers": {
+    "title": "Mijozlarni qadrlash",
+    "card1title": "Tajriba",
+    "card1text": "Xodimlarimizning professionalligi",
+    "card2title": "Yetkazib berish",
+    "card2text": "Shahar bo’ylab bepul  yetkazib berish",
+    "card3title": "Sifat",
+    "card3text": "Chidamli, sifatli basseynlar"
+  },
+  "Info": {
+    "title": "Intex basseynlari Toshkentda",
+    "info1": "Intex basseynlari - bu butun oila uchun yoqimli dam olish uchun mo'ljallangan arzon, yuqori sifatli, ishonchli va ekologik toza mahsulotlar. Basseyn har qanday hovliga to'liq o'rnatilishi va yozda faol foydalanilishi mumkin. Basseyn sizga yorqin his-tuyg'ularni beradi va issiq yoz kunlarida sizni jaziramadan qutqaradi.",
+    "info2": "Intex Basseynlari afzalliklarning kengligi bilan ajralib turadi, quyida ulardan eng muhimlarini ajratib ko'rsatish mumkin:",
+    "item1": "Chidamlilik",
+    "item2": "O'rnatish uchun oson oson",
+    "item3": "Chiroyli va yorqin ranglar",
+    "item4": "Zamonaviy dizayn",
+    "item5": "Yuqori sifatli"
+  },
+  "Footer": {
+    "title": "Bepul konsultatsiya yordami uchun",
+    "name_input": "Ismingiz",
+    "phone_input": "Telefon raqamingiz",
+    "btn": "Konsultatsiya olish",
+    "work_days": "Ish kunlari: 10:00 - 22:00",
+    "work_days_desc": "Dam olish kunlarisiz",
+    "region": "Pahlavon Mahmud ko’chasi, Yashnobod tumani, Toshkent."
+  }
 }
